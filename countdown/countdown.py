@@ -11,7 +11,7 @@ from countdown.utils import CountdownDuration, StoreCountdownDurationAction, pla
 
 class CountdownTimer:
     def __init__(self, duration: CountdownDuration, PrinterClass: Printer, REFRESH_RATE=1):
-        self._seconds_remaning = duration.days * 86400 + duration.hours * \
+        self._seconds_remaining = duration.days * 86400 + duration.hours * \
             3600 + duration.minutes * 60 + duration.seconds
         self.duration = duration
         self.printer_factory = PrinterClass
@@ -19,15 +19,24 @@ class CountdownTimer:
         self.REFRESH_RATE = REFRESH_RATE
         self.tick = 1 / REFRESH_RATE
 
+    @staticmethod
+    def format_time(time):
+        return f'{time // 3600:02.0f}:{time % 3600 // 60:02.0f}:{time % 60:02.0f}'
+
+    def get_time_remaining(self, formatted=True):
+        if formatted:
+            return CountdownTimer.format_time(self._seconds_remaining)
+        return self._seconds_remaining
+
     def start(self):
         if self.printer.closed:
             del self.printer
             self.printer = self.printer_factory()
 
         try:
-            while self._seconds_remaning > 0:
-                self._seconds_remaning -= self.tick
-                formatted_string = f'{self._seconds_remaning // 3600:02.0f}:{self._seconds_remaning % 3600 // 60:02.0f}:{self._seconds_remaning % 60:02.0f}'
+            while self._seconds_remaining > 0:
+                self._seconds_remaining -= self.tick
+                formatted_string = f'{self._seconds_remaining // 3600:02.0f}:{self._seconds_remaining % 3600 // 60:02.0f}:{self._seconds_remaining % 60:02.0f}'
                 self.printer.print(formatted_string)
                 sleep(self.tick)
         except:
@@ -51,7 +60,8 @@ def main(args: Dict[str, Any] = None, PrinterClass: Printer = CursesPrinter) -> 
             play_sound()
             exit(0)
         except KeyboardInterrupt:
-            stop = input('\rStopped. Exit? [y/N]: ')
+            stop = input(
+                f'\rStopped at {timer.get_time_remaining()} remaining. Exit? [y/N]: ')
             if stop.upper() == 'Y':
                 exit(1)
 
