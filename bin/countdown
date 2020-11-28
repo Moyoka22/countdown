@@ -1,7 +1,7 @@
 #!/bin/bash
 file_path="$(readlink -f ${0})"
 root_dir=$(dirname "$(dirname "${file_path}")")
+source "${root_dir}/venv/bin/activate"
 cd "${root_dir}"
 export PYTHONPATH="${root_dir}"
-pwd
-python3 -m "countdown" ${@}
+python -m "countdown" ${@}
