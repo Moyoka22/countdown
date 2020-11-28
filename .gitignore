@@ -1,1 +1,8 @@
-__pycache__/
+# Python Cache Files
+*/__pycache__
+*.pyc
+
+# Development Environment
+.envrc
+.python-version
+.vscode

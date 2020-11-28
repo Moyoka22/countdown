@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "countdown"
+version = "0.1.0"
+description = ""
+authors = ["Moyewa Odiase <moyeodiase@hotmail.co.uk>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+art = "^5.0"
+pydub = "^0.24.1"
+
+[tool.poetry.dev-dependencies]
+autopep8 = "^1.5.4"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
