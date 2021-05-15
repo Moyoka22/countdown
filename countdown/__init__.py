@@ -1,1 +1,2 @@
-name = "countdown"
+
+from .Countdown import Countdown

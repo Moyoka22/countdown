@@ -10,14 +10,3 @@ class CountdownArguments(TypedDict):
     duration: float
     printer: PrinterBase
     alarm: AlarmBase
-
-
-@dataclass
-class Arguments:
-    def __init__(self, countdown: str,
-                 printer_choice: str = 'basic',
-                 alarm_choice: str = 'beep'):
-        pass
-
-    def as_dict(self) -> CountdownArguments:
-        return {}

@@ -1,5 +1,2 @@
-from .PrinterBase import PrinterBase
 from .BasicPrinter import BasicPrinter
-
-
-__all__ = []
+from .PrinterBase import PrinterBase, get_printer

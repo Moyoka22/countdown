@@ -1,10 +1,11 @@
 import argparse
+from typing import Any, Dict
 
 from .Countdown import Countdown
-from .parser import Arguments, Parser
+from .parser import Parser
 
 
-def main(args: argparse.Namespace):
+def main(args: Dict[str, Any]):
 
     countdown_args = Parser(args).get_arguments()
 
@@ -18,4 +19,4 @@ def parse_script_arguments() -> argparse.Namespace:
 
 if __name__ == '__main__':
     args = parse_script_arguments()
-    main(args)
+    main(vars(args))
