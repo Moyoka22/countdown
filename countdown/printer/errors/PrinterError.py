@@ -1,0 +1,3 @@
+
+class PrinterError(Exception):
+    pass

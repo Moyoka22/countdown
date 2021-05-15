@@ -1,4 +1,5 @@
-from countdown import countdown
+from .main import main, parse_script_arguments
 
 if __name__ == '__main__':
-    countdown.main()
+    args = parse_script_arguments()
+    main(args)

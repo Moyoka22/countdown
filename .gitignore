@@ -1,8 +1,11 @@
 # Python Cache Files
-*/__pycache__
+**/__pycache__/
 *.pyc
 
 # Development Environment
 .envrc
 .python-version
-.vscode
+.vscode/
+scratch/
+
+TODO.md
