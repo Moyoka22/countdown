@@ -23,7 +23,6 @@ class Countdown:
         while not self._finished:
             self._tick()
             self._printer.print(self._remaining)
-            self._wait()
         self._alarm.sound()
 
     def restart(self):
@@ -31,6 +30,7 @@ class Countdown:
         self._finished = False
 
     def _tick(self):
+        self._wait()
         self._remaining -= self.TICK_INCREMENT
         self._finished = (self._remaining <= 0)
 

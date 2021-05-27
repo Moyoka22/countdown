@@ -1,17 +1,18 @@
 from __future__ import annotations
 
 from abc import ABCMeta, abstractmethod
+from typing import Dict, Type
 
 from ..errors import PrinterError
 
-_printer_registry = {}
+_printer_registry: Dict[str, Type[PrinterBase]] = {}
 
 
-def register_printer(name: str, printer: PrinterBase):
+def register_printer(name: str, printer: Type[PrinterBase]):
     _printer_registry[name] = printer
 
 
-def get_printer(name: str):
+def get_printer(name: str) -> Type[PrinterBase]:
     try:
         printer = _printer_registry[name]
     except KeyError:
