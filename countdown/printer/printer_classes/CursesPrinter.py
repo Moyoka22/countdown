@@ -1,27 +1,11 @@
-from abc import ABCMeta, abstractmethod
 import curses
-from typing import *
 
 from art import text2art
 
-
-class Printer(metaclass=ABCMeta):
-    closed = False
-
-    @abstractmethod
-    def print(self, output: str) -> None:
-        ...
-
-    def close(self):
-        self.closed = True
+from .PrinterBase import PrinterBase
 
 
-class ConsolePrinter(Printer):
-    def print(self, output: str) -> None:
-        print('\r' + output, end='', flush=True)
-
-
-class CursesPrinter(Printer):
+class CursesPrinter(PrinterBase):
     def __init__(self):
         self.stdscr = curses.initscr()
         curses.noecho()
