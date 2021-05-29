@@ -10,8 +10,8 @@ valid_tokens = [r'\b\d+[hms]\b', r'\b\d+\s?(?:hour|minute|second)s?\b']
 
 class CountdownArguments(TypedDict):
     duration: float
-    printer: Type[PrinterBase]
-    alarm: Type[AlarmBase]
+    Printer: Type[PrinterBase]
+    Alarm: Type[AlarmBase]
 
 
 class Parser:
@@ -44,8 +44,8 @@ class Parser:
         self.alarm_choice = cast(str, self.alarm_choice)
         return {
             'duration': self.get_duration(self.duration_str),
-            'printer': self.get_printer(self.printer_choice),
-            'alarm': self.get_alarm(self.alarm_choice)
+            'Printer': self.get_printer(self.printer_choice),
+            'Alarm': self.get_alarm(self.alarm_choice)
         }
 
     def get_duration(self, duration_str: str) -> float:

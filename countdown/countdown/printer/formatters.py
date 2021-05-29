@@ -1,17 +1,20 @@
-from .PrinterBase import PrinterBase
+from abc import ABC, abstractmethod
 
 
-class BasicPrinter(PrinterBase):
+class FormatterBase(ABC):
+    @abstractmethod
+    def format(self, in_str: str) -> str:
+        pass
 
-    printer_name = 'basic'
 
-    def print(self, duration: float) -> None:
-        end = ''
+class FormatTime(FormatterBase):
+    def format(self, in_str: str) -> str:
+        duration = float(in_str)
         if duration < 0:
             end = '\n'
             duration = 0
         duration_str = self._format_duration(duration)
-        print(f'\r{duration_str}', end=end, flush=True)
+        return duration_str
 
     def _format_duration(self, duration: float) -> str:
         duration_seconds = int(duration % 60)

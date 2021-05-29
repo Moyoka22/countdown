@@ -8,12 +8,15 @@ license = "MIT"
 [tool.poetry.dependencies]
 python = "^3.8"
 art = "^5.0"
-pydub = "^0.24.1"
+"vext.gi" = "^0.7.4"
+vext = "^0.7.6"
+readchar = "^3.0.4"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.4"
 virtualenv = "^20.2.1"
 pytest = "^6.2.4"
+shiv = "^0.5.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

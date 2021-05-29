@@ -34,11 +34,15 @@ class PrinterBaseMeta(ABCMeta):
 
 
 class PrinterBase(metaclass=PrinterBaseMeta):
-    closed = False
+    _closed = False
 
     @abstractmethod
-    def print(self, duration: float) -> None:
+    def print(self, output: str) -> None:
         pass
 
+    @abstractmethod
     def close(self):
-        self.closed = True
+        pass
+
+    def is_closed(self):
+        return self._closed
