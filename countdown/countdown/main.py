@@ -4,9 +4,15 @@ from typing import Any, Dict
 from .Countdown import Countdown
 from .Listener import Listener
 from .parser import Parser
+from .utils import JoinListAction
 
 
-def main(args: Dict[str, Any]):
+def main():
+    args = parse_script_arguments()
+    countdonw_main(vars(args))
+
+
+def countdonw_main(args: Dict[str, Any]):
 
     countdown_args = Parser(args).get_arguments()
 
@@ -21,7 +27,9 @@ def main(args: Dict[str, Any]):
 
 def parse_script_arguments() -> argparse.Namespace:
     parser = argparse.ArgumentParser()
-    parser.add_argument('duration', type=str,
+    parser.add_argument('duration',
+                        action=JoinListAction,
+                        nargs='+',
                         help='A string specifying the duration for which the '
                         'timer should be run.')
     parser.add_argument('--printer', '-p', default='curses', type=str,
@@ -33,10 +41,5 @@ def parse_script_arguments() -> argparse.Namespace:
     return parser.parse_args()
 
 
-def entry():
-    args = parse_script_arguments()
-    main(vars(args))
-
-
 if __name__ == '__main__':
-    entry()
+    main()
