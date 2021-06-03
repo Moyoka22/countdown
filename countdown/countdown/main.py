@@ -9,6 +9,7 @@ from .utils import JoinListAction
 
 def main():
     args = parse_script_arguments()
+<<<<<<< HEAD
     countdonw_main(vars(args))
 
 
@@ -23,6 +24,9 @@ def countdonw_main(args: Dict[str, Any]):
     listener.start()
 
     countdown.join()
+=======
+    countdown_main(vars(args))
+>>>>>>> develop
 
 
 def parse_script_arguments() -> argparse.Namespace:
@@ -41,5 +45,21 @@ def parse_script_arguments() -> argparse.Namespace:
     return parser.parse_args()
 
 
+<<<<<<< HEAD
+=======
+def countdown_main(args: Dict[str, Any]):
+
+    countdown_args = Parser(args).get_arguments()
+
+    countdown = Countdown(**countdown_args)
+    listener = Listener(countdown)
+
+    countdown.start()
+    listener.start()
+
+    countdown.join()
+
+
+>>>>>>> develop
 if __name__ == '__main__':
     main()
